@@ -1,0 +1,152 @@
+---
+lookup_options:
+  simp_windows::registry_values:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::local_security_policies:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::audit_policies:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::features:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::acls:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::services:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::reg_acls:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::processmitigation:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::krbtgt_pw_date:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::administrator_pw_date:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::password_expiry_exclusions:
+    merge:
+      strategy: unique
+  simp_windows::unused_accounts_exclusions:
+    merge:
+      strategy: unique
+  simp_windows::windows_firewall:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::windows_firewall_exceptions:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+simp_windows::rename_admin_account: false
+simp_windows::rename_guest_account: false
+simp_windows::administrator_username: 'simp_admin'
+simp_windows::guest_username: 'simp_guest'
+simp_windows::acls: {}
+simp_windows::reg_acls: {}
+simp_windows::registry_values: {}
+simp_windows::local_security_policies: {}
+simp_windows::audit_policies: {}
+simp_windows::features: {}
+simp_windows::services: {}
+simp_windows::enable_smart_card: false
+simp_windows::banner: false
+simp_windows::banner_name: 'default'
+simp_windows::banner_custom_title: 'Warning'
+simp_windows::banner_custom_text: ''
+simp_windows::modify_reg_acl_security: false
+simp_windows::banners:
+  default:
+    title: 'Warning'
+    data: >+2
+      This computer system, and all related equipment, networks, and network
+      devices are provided for authorised use only.  All systems controlled by
+      this organisation will be monitored for all lawful purposes.  Monitoring
+      includes the totality of the operating system and connected networks.  No
+      events on this system are excluded from record and there are no
+      exclusions from this policy.
+
+      Use of this system constitutes consent to full monitoring of your
+      activities for use by the authorised monitoring organisation.
+      Unauthorised use of this system, including uninvited connections, may
+      subject you to criminal prosecution.
+
+      The data collected from this system may be used for any purpose by the
+      collecting organisation.  If you do not agree to this monitoring,
+      discontinue use of the system IMMEDIATELY.
+  us_dod:
+    title: DoD Notice and Consent Banner
+    data: >+2
+      You are accessing a U.S. Government (USG) Information System (IS) that is
+      provided for USG-authorized use only.
+
+      By using this IS (which includes any device attached to this IS), you
+      consent to the following conditions:
+
+      -The USG routinely intercepts and monitors communications on this IS for
+      purposes including, but not limited to, penetration testing, COMSEC
+      monitoring, network operations and defense, personnel misconduct (PM),
+      law enforcement (LE), and counterintelligence (CI) investigations.
+
+      -At any time, the USG may inspect and seize data stored on this IS.
+
+      -Communications using, or data stored on, this IS are not private, are
+      subject to routine monitoring, interception, and search, and may be
+      disclosed or used for any USG-authorized purpose.
+
+      -This IS includes security measures (e.g., authentication and access
+      controls) to protect USG interests--not for your personal benefit or
+      privacy.
+
+      -Notwithstanding the above, using this IS does not constitute consent to
+      PM, LE or CI investigative searching or monitoring of the content of
+      privileged communications, or work product, related to personal
+      representation or services by attorneys, psychotherapists, or clergy, and
+      their assistants. Such communications and work product are private and
+      confidential. See User Agreement for details.
+simp_windows::processmitigation: {}
+simp_windows::krbtgt_pw_date: {}
+simp_windows::administrator_pw_date: {}
+simp_windows::password_expiry: false
+simp_windows::password_expiry_exclusions: []
+simp_windows::unused_accounts: false
+simp_windows::unused_accounts_maxdays: 35
+simp_windows::unused_accounts_exclusions: []
+simp_windows::manage_windows_firewall: false
+simp_windows::windows_firewall: {}
+simp_windows::windows_firewall_exceptions: {}
+simp_windows::install_emet: false
+
+simp_windows::emet::package_name: 'EMET 5.52'
+simp_windows::emet::package_ensure: 'installed'
+simp_windows::emet::package_source: 'https://download.microsoft.com/download/F/3/6/F366901C-F3CB-4A94-B377-5611740B8B19/EMET%20Setup.msi'
+simp_windows::emet::install_options:
+  - '/qn'
+  - '/norestart'
+
+simp_windows::install_laps: false
+simp_windows::laps::package_ensure: 'installed'
+simp_windows::laps::package_name: 'Local Administrator Password Solution'
+# use this link for the x86 client
+# simp_windows::laps::package_source: 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x86.msi'
+# use this link for the x64 client
+simp_windows::laps::package_source: 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'
+simp_windows::laps::install_options:
+  - '/quiet'
