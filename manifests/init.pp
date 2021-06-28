@@ -119,7 +119,13 @@ class simp_windows (
   Array                   $classes = lookup('simp::classes', Array[String], 'unique', []),
 ) {
   # include all classes in simp::classes
-  include $classes
+  # unless they start with the knockout prefix '--'
+  $included_classes = $classes.filter |$c| { $c !~ /^--/ }
+  $excluded_classes = $classes.filter |$c| { $c =~ /^--/ }.map |$c| { $c.regsubst(/^--/, '') }
+
+  $_classes = $included_classes - $excluded_classes
+
+  include $_classes
 
   # SMART CARD MANAGEMENT
   if $enable_smart_card {
