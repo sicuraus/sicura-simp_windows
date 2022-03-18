@@ -1,6 +1,6 @@
 {
   "name": "simp-simp_windows",
-  "version": "1.5.1",
+  "version": "1.6.1",
   "author": "Onyx Point, Inc",
   "summary": "Apply SIMP compliance policies to Windows systems",
   "license": "proprietary",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs-acl",
-      "version_requirement": ">= 3.1.1 < 5.0.0"
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     },
     {
       "name": "fervid-auditpol",
@@ -18,39 +18,39 @@
     },
     {
       "name": "simp-compliance_markup",
-      "version_requirement": ">= 3.1.1 < 4.0.0"
+      "version_requirement": ">= 3.2.0 < 4.0.0"
     },
     {
       "name": "ayohrling-local_security_policy",
-      "version_requirement": ">= 0.7.0 < 1.0.0"
+      "version_requirement": ">= 1.0.0 < 2.0.0"
     },
     {
       "name": "puppetlabs-powershell",
-      "version_requirement": ">= 2.1.3 < 6.0.0"
+      "version_requirement": ">= 5.0.0 < 6.0.0"
     },
     {
       "name": "puppetlabs-registry",
-      "version_requirement": ">= 1.1.4 < 5.0.0"
+      "version_requirement": ">= 4.0.1 < 5.0.0"
     },
     {
       "name": "ipcrm-registry_acl",
-      "version_requirement": ">= 0.0.6 < 1.0.0"
+      "version_requirement": ">= 0.1.0 < 1.0.0"
     },
     {
       "name": "simp-simplib",
-      "version_requirement": ">= 1.0.0 < 5.0.0"
+      "version_requirement": ">= 4.10.1 < 5.0.0"
     },
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 4.13.1 < 8.0.0"
+      "version_requirement": ">= 5.0.0 < 9.0.0"
     },
     {
       "name": "puppet-windowsfeature",
-      "version_requirement": ">= 3.1.0 < 4.0.0"
+      "version_requirement": ">= 3.2.0 < 4.0.0"
     },
     {
       "name": "puppet-windows_firewall",
-      "version_requirement": ">= 3.0.0 < 5.0.0"
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -68,10 +68,10 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 8.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
-  "pdk-version": "2.1.0",
-  "template-url": "pdk-default#2.1.0",
-  "template-ref": "tags/2.1.0-0-ga675ea5"
+  "pdk-version": "2.3.0",
+  "template-url": "pdk-default#2.3.0",
+  "template-ref": "tags/2.3.0-0-g8aaceff"
 }
