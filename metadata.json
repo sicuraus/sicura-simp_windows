@@ -1,6 +1,6 @@
 {
   "name": "simp-simp_windows",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "author": "Onyx Point, Inc",
   "summary": "Apply SIMP compliance policies to Windows systems",
   "license": "proprietary",
@@ -46,7 +46,7 @@
     },
     {
       "name": "puppet-windowsfeature",
-      "version_requirement": ">= 3.2.0 < 4.0.0"
+      "version_requirement": ">= 3.2.0 < 5.0.0"
     },
     {
       "name": "puppet-windows_firewall",
