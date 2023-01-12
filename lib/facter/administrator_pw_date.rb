@@ -11,8 +11,7 @@
 require 'json'
 
 Facter.add('admin_pw_date') do
-  confine 'osfamily'                  => 'windows'
-  confine 'operatingsystemmajrelease' => ['2012', '2012 R2']
+  confine 'osfamily' => 'windows'
 
   setcode do
     fact_value ||= {}
@@ -46,39 +45,6 @@ Facter.add('admin_pw_date') do
       fact_value['pw_date_int'] = date_int
       fact_value['pw_date'] = acct_date[0]
     end
-
-    cur_date = JSON.parse(Facter::Core::Execution.execute('powershell.exe -noprofile -nologo -noninteractive -command "Get-Date | convertto-json"'))
-    system_date_int = cur_date['value'].match(%r{\\?\/Date\((\d+)\)\\?\/})[1]
-    fact_value['sys_date_int'] = system_date_int
-    fact_value['sys_date'] = cur_date['DateTime']
-
-    fact_value
-  end
-end
-
-Facter.add('admin_pw_date') do
-  confine 'osfamily'                  => 'windows'
-  confine 'operatingsystemmajrelease' => ['2016', '2019', '10']
-
-  setcode do
-    if Facter.value(:simp_windows__facts)['active_directory']['systemrole'] == 'domaincontroller'
-      ps_exec_string = 'powershell.exe -noprofile -nologo -noninteractive -command "(Get-ADUser krbtgt -Property PasswordLastSet).passwordlastset | convertto-json"'
-    else
-      account_name_cmd = '(Get-WmiObject -Class Win32_UserAccount -Filter \\"LocalAccount = \'True\' AND SID LIKE \'S-1-5-21-%-500\'\\").Name | convertto-json'
-      admin_account_name = Facter::Core::Execution.execute("powershell.exe -noprofile -nologo -noninteractive -command \"#{account_name_cmd}\"")
-      ps_exec_string = "powershell.exe -noprofile -nologo -noninteractive -command \"(Get-LocalUser #{admin_account_name}).passwordlastset | convertto-json\""
-    end
-
-    fact_value ||= {}
-
-    ps_date = JSON.parse(Facter::Core::Execution.execute(ps_exec_string))
-    if ps_date.nil?
-      raise 'admin_pw_date:: Error getting Administrator account details'
-    end
-
-    pw_date_int = ps_date['value'].match(%r{\\?\/Date\((\d+)\)\\?\/})[1]
-    fact_value['pw_date_int'] = pw_date_int
-    fact_value['pw_date'] = ps_date['DateTime']
 
     cur_date = JSON.parse(Facter::Core::Execution.execute('powershell.exe -noprofile -nologo -noninteractive -command "Get-Date | convertto-json"'))
     system_date_int = cur_date['value'].match(%r{\\?\/Date\((\d+)\)\\?\/})[1]

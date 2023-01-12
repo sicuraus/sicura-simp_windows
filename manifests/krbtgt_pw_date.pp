@@ -27,8 +27,8 @@ define simp_windows::krbtgt_pw_date (
       # compare passwordlastset date with calculated date
       # notify if older
       if $pwlastsetdate < $oldestpwdate {
-        notify{ 'krbtgt pw date':
-          message => "FAILURE: The krbtgt account password is more than ${maxagedays} days old, please change it as soon as possible."}
+        notify { 'krbtgt pw date':
+        message => "FAILURE: The krbtgt account password is more than ${maxagedays} days old, please change it as soon as possible." }
       }
     }
   }

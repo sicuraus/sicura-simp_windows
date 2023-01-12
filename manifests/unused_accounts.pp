@@ -39,7 +39,7 @@ class simp_windows::unused_accounts (
         }
       }
       unless $acct_list == [] {
-        notify{ "The following accounts should be reviewed for lack of use. ${acct_list}":}
+        notify { "The following accounts should be reviewed for lack of use. ${acct_list}": }
       }
     }
   }

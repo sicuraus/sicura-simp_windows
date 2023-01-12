@@ -35,7 +35,6 @@ define simp_windows::processmitigation (
   Hash[String, Enum['NOT SET', 'ON', 'OFF']] $mitigation,
   Variant[Enum['System'], Pattern[/(?i:\.exe)$/]]  $applies_to = $name,
 ) {
-
   $mitigationlookup = {
     'DEP'                                => 'Dep.Enable',
     'EmulateAtlThunks'                   => 'Dep.EmulateAtlThunks',
@@ -86,7 +85,7 @@ define simp_windows::processmitigation (
     }
   }
 
-  $execflag = $mitigation.any() |$key, $value| {  # returns false if test code ever evaluates to false, returns true if all are true
+  $execflag = $mitigation.any() |$key, $value| { # returns false if test code ever evaluates to false, returns true if all are true
 
     $mitigationitem = $mitigationlookup[$key]
     $factvalue = $factvalues[$value]
@@ -95,7 +94,7 @@ define simp_windows::processmitigation (
       fail ("${key} is not currently supported.")
     }
 
-    $factsarray = $facts['simp_windows__facts']['process_mitigation'].filter |$element| {$element['ProcessName'] == $applies_to}
+    $factsarray = $facts['simp_windows__facts']['process_mitigation'].filter |$element| { $element['ProcessName'] == $applies_to }
     if $factsarray.length > 0 {
       $hash = $factsarray[0]
     } else {
@@ -116,16 +115,16 @@ define simp_windows::processmitigation (
     }
 
     $mitigations_to_enable = $mitigation.reduce([]) |$memo, $value| {
-        if $value[1] == 'ON' {
-            $memo << $value[0]
-        }
+      if $value[1] == 'ON' {
+        $memo << $value[0]
+      }
     }
 
     # Exec all settings if any do not match
     if $mitigations_to_enable.length > 0 {
-        $mitigations_to_enable_string = $mitigations_to_enable.join(',')
+      $mitigations_to_enable_string = $mitigations_to_enable.join(',')
     } else {
-        $mitigations_to_enable_string = $mitigations_to_enable.flatten
+      $mitigations_to_enable_string = $mitigations_to_enable.flatten
     }
 
     if $mitigations_to_enable_string.length > 0 {

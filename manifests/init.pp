@@ -82,6 +82,12 @@
 #   A boolean to enable checking for accounts with 'Password never expires' enabled
 # @param password_expiry_exclusions
 #   An array containing account names allowed to have 'Password never expires' enabled
+# @param unused_accounts
+#   Detect and notify on unused accounts
+# @param unused_accounts_maxdays
+#   Number of days after which an account is considered 'unused'
+# @param unused_accounts_exclusions
+#   Array containing account names to exclude from alerting
 # @param classes
 #   An array containing the classes listed in simp::classes
 class simp_windows (
@@ -116,7 +122,9 @@ class simp_windows (
   Hash                    $windows_firewall_exceptions,
   Boolean                 $install_emet,
   Boolean                 $install_laps,
+  # lint:ignore:lookup_in_parameter
   Array                   $classes = lookup('simp::classes', Array[String], 'unique', []),
+  # lint:endignore
 ) {
   # include all classes in simp::classes
   # unless they start with the knockout prefix '--'
@@ -204,7 +212,7 @@ class simp_windows (
 
   # Registry ACL Permissions
   $reg_acls.each |String $key, Hash $data| {
-    reg_acl{ $data['target']:
+    reg_acl { $data['target']:
       * => $data,
     }
   }
@@ -213,15 +221,15 @@ class simp_windows (
   # seperate from the rest of the reg ACLs. This will error out unless the module
   # is run with SYSTEM level permissions.
   if $modify_reg_acl_security {
-    reg_acl{ 'security':
+    reg_acl { 'security':
       target              => 'hklm:security',
       owner               => 'Administrators',
       purge               => 'all',
       inherit_from_parent => false,
       permissions         => [
-        {'RegistryRights' => 'ReadPermissions', 'IdentityReference' => 'Administrators' },
-        {'RegistryRights' => 'ChangePermissions', 'IdentityReference' => 'Administrators' },
-        {'RegistryRights' => 'FullControl', 'IdentityReference' => 'SYSTEM' },
+        { 'RegistryRights' => 'ReadPermissions', 'IdentityReference' => 'Administrators' },
+        { 'RegistryRights' => 'ChangePermissions', 'IdentityReference' => 'Administrators' },
+        { 'RegistryRights' => 'FullControl', 'IdentityReference' => 'SYSTEM' },
       ],
     }
   }
@@ -244,10 +252,10 @@ class simp_windows (
 
   # Security Policies
   $_merged_local_security_policies = $local_security_policies +
-    $_banner_security_policy +
-    $_admin_account_security_policy +
-    $_guest_account_security_policy -
-    $_smart_card_local_policy
+  $_banner_security_policy +
+  $_admin_account_security_policy +
+  $_guest_account_security_policy -
+  $_smart_card_local_policy
 
   $_merged_local_security_policies.each |String $key, Hash $data| {
     local_security_policy { $key:
@@ -255,22 +263,14 @@ class simp_windows (
     }
   }
 
-  # Windows Backend Stuff
-  case $facts['operatingsystemrelease'] {
-    '2008 R2': {
-      windowsfeature { 'NetFx3':
-        ensure => present,
-      }
-    }
-    default: {}
-  }
-
+  # Audit policies
   $audit_policies.each |String $audit_name, Hash $audit_data| {
     auditpol { $audit_name:
       * => $audit_data,
     }
   }
 
+  # Windows Features
   $features.each |String $feature_name, Hash $feature_data| {
     windowsfeature { $feature_name:
       * => $feature_data,
@@ -327,7 +327,6 @@ class simp_windows (
 
   # Windows Firewall
   if $manage_windows_firewall {
-
     include 'windows_firewall'
 
     $windows_firewall.each |String $key, Hash $data| {
@@ -343,10 +342,12 @@ class simp_windows (
     }
   }
 
+  # Enhanced Mitigation Experience Toolkit
   if $install_emet {
     include 'simp_windows::emet'
   }
 
+  # Local Administrator Password Solution
   if $install_laps {
     include 'simp_windows::laps'
   }

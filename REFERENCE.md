@@ -21,57 +21,90 @@
 
 ## Classes
 
-### `simp_windows`
+### <a name="simp_windows"></a>`simp_windows`
 
 Apply SIMP compliance policies to Windows systems
 
 #### Parameters
 
-The following parameters are available in the `simp_windows` class.
+The following parameters are available in the `simp_windows` class:
 
-##### `registry_values`
+* [`registry_values`](#registry_values)
+* [`local_security_policies`](#local_security_policies)
+* [`audit_policies`](#audit_policies)
+* [`features`](#features)
+* [`acls`](#acls)
+* [`services`](#services)
+* [`reg_acls`](#reg_acls)
+* [`modify_reg_acl_security`](#modify_reg_acl_security)
+* [`rename_admin_account`](#rename_admin_account)
+* [`administrator_username`](#administrator_username)
+* [`rename_guest_account`](#rename_guest_account)
+* [`guest_username`](#guest_username)
+* [`enable_smart_card`](#enable_smart_card)
+* [`banner`](#banner)
+* [`banner_name`](#banner_name)
+* [`banner_custom_title`](#banner_custom_title)
+* [`banner_custom_text`](#banner_custom_text)
+* [`banners`](#banners)
+* [`manage_windows_firewall`](#manage_windows_firewall)
+* [`windows_firewall`](#windows_firewall)
+* [`windows_firewall_exceptions`](#windows_firewall_exceptions)
+* [`install_emet`](#install_emet)
+* [`install_laps`](#install_laps)
+* [`processmitigation`](#processmitigation)
+* [`krbtgt_pw_date`](#krbtgt_pw_date)
+* [`administrator_pw_date`](#administrator_pw_date)
+* [`password_expiry`](#password_expiry)
+* [`password_expiry_exclusions`](#password_expiry_exclusions)
+* [`unused_accounts`](#unused_accounts)
+* [`unused_accounts_maxdays`](#unused_accounts_maxdays)
+* [`unused_accounts_exclusions`](#unused_accounts_exclusions)
+* [`classes`](#classes)
+
+##### <a name="registry_values"></a>`registry_values`
 
 Data type: `Hash`
 
 Windows registry keys and values
 
-##### `local_security_policies`
+##### <a name="local_security_policies"></a>`local_security_policies`
 
 Data type: `Hash`
 
 Windows Local Security Policy settings
 
-##### `audit_policies`
+##### <a name="audit_policies"></a>`audit_policies`
 
 Data type: `Hash`
 
 Windows Audit Policy settings
 
-##### `features`
+##### <a name="features"></a>`features`
 
 Data type: `Hash`
 
 Windows Features settings
 
-##### `acls`
+##### <a name="acls"></a>`acls`
 
 Data type: `Hash`
 
 ACL settings
 
-##### `services`
+##### <a name="services"></a>`services`
 
 Data type: `Hash`
 
 Services
 
-##### `reg_acls`
+##### <a name="reg_acls"></a>`reg_acls`
 
 Data type: `Hash`
 
 Registry ACL settings
 
-##### `modify_reg_acl_security`
+##### <a name="modify_reg_acl_security"></a>`modify_reg_acl_security`
 
 Data type: `Boolean`
 
@@ -80,82 +113,82 @@ Due to Windows' tight control over the security key, this has been kept
 seperate from the rest of the registry ACLs. Setting this paramater will
 cause an error unless the module is run with SYSTEM level permissions.
 
-##### `rename_admin_account`
+##### <a name="rename_admin_account"></a>`rename_admin_account`
 
 Data type: `Boolean`
 
 If set, rename the local `Administrator` account
 
-##### `administrator_username`
+##### <a name="administrator_username"></a>`administrator_username`
 
 Data type: `Optional[String[1,104]]`
 
 Username for the local `Administrator` user
 
-##### `rename_guest_account`
+##### <a name="rename_guest_account"></a>`rename_guest_account`
 
 Data type: `Boolean`
 
 If set, rename the local `Guest` account
 
-##### `guest_username`
+##### <a name="guest_username"></a>`guest_username`
 
 Data type: `Optional[String[1,104]]`
 
 Username for the local `Guest` user
 
-##### `enable_smart_card`
+##### <a name="enable_smart_card"></a>`enable_smart_card`
 
 Data type: `Boolean`
 
 Turn on Windows Smart Card Services
 See also: 'simp_windows::smart_card'
 
-##### `banner`
+##### <a name="banner"></a>`banner`
 
 Data type: `Boolean`
 
 Enable management of the login banner
 
-##### `banner_name`
+##### <a name="banner_name"></a>`banner_name`
 
 Data type: `String`
 
 Banner to use. By default, the options are `default`, `us_dod`, or `custom`.
 
-##### `banner_custom_title`
+##### <a name="banner_custom_title"></a>`banner_custom_title`
 
 Data type: `String`
 
 If `banner_name` is `custom`, use this title for the banner
 
-##### `banner_custom_text`
+##### <a name="banner_custom_text"></a>`banner_custom_text`
 
 Data type: `String`
 
 If banner_type == 'custom'
 If `banner_name` is `custom`, use this text for the banner
 
-##### `banners`
+##### <a name="banners"></a>`banners`
 
 Data type: `Hash`
 
 A hash containing possible banners
 
-##### `manage_windows_firewall`
+##### <a name="manage_windows_firewall"></a>`manage_windows_firewall`
 
 Data type: `Boolean`
 
 Enable management of the Windows Firewall.  Firewall settings will only be changed if this is set to 'true'.
 
-##### `windows_firewall`
+##### <a name="windows_firewall"></a>`windows_firewall`
 
 Data type: `Hash`
 
 Hash of firewall settings to enforce.  See documentation in the puppet/windows_firewall module for details.
 Link: https://forge.puppet.com/modules/puppet/windows_firewall
 
-##### `windows_firewall_exceptions`
+##### <a name="windows_firewall_exceptions"></a>`windows_firewall_exceptions`
 
 Data type: `Hash`
 
@@ -172,13 +205,13 @@ Example rule:
      display_name => 'Windows Remote Management HTTP-In',
      description  => 'Inbound rule for Windows Remote Management via WS-Management. [TCP 5985]',
 
-##### `install_emet`
+##### <a name="install_emet"></a>`install_emet`
 
 Data type: `Boolean`
 
 Deploys Microsoft Enhanced Mitigation Experience Toolkit v5.52 to clients
 
-##### `install_laps`
+##### <a name="install_laps"></a>`install_laps`
 
 Data type: `Boolean`
 
@@ -189,58 +222,66 @@ NOTE: The Active Directory Schema must be extended and permissions configured
   on clients until those prerequisites are completed and Group Policy configured to enable the
   solution.
 
-##### `processmitigation`
+##### <a name="processmitigation"></a>`processmitigation`
 
 Data type: `Hash`
 
 A hash containing process mitigation settings.
 See simp_windows::processmitigation for details.
 
-##### `krbtgt_pw_date`
+##### <a name="krbtgt_pw_date"></a>`krbtgt_pw_date`
 
 Data type: `Hash`
 
 A hash containing settings for krbtgt account password age
 See simp_windows::krbtgt_pw_date for details.
 
-##### `administrator_pw_date`
+##### <a name="administrator_pw_date"></a>`administrator_pw_date`
 
 Data type: `Hash`
 
 A hash containing settings for built-in Administrator account password age
 See simp_windows::administrator_pw_date for details.
 
-##### `password_expiry`
+##### <a name="password_expiry"></a>`password_expiry`
 
 Data type: `Boolean`
 
 A boolean to enable checking for accounts with 'Password never expires' enabled
 
-##### `password_expiry_exclusions`
+##### <a name="password_expiry_exclusions"></a>`password_expiry_exclusions`
 
 Data type: `Array`
 
 An array containing account names allowed to have 'Password never expires' enabled
 
-##### `unused_accounts`
+##### <a name="unused_accounts"></a>`unused_accounts`
 
 Data type: `Boolean`
 
+Detect and notify on unused accounts
 
-
-##### `unused_accounts_maxdays`
+##### <a name="unused_accounts_maxdays"></a>`unused_accounts_maxdays`
 
 Data type: `Numeric`
 
+Number of days after which an account is considered 'unused'
 
-
-##### `unused_accounts_exclusions`
+##### <a name="unused_accounts_exclusions"></a>`unused_accounts_exclusions`
 
 Data type: `Array`
 
+Array containing account names to exclude from alerting
 
+##### <a name="classes"></a>`classes`
 
-### `simp_windows::emet`
+Data type: `Array`
+
+An array containing the classes listed in simp::classes
+
+Default value: `lookup('simp::classes', Array[String], 'unique', [])`
+
+### <a name="simp_windowsemet"></a>`simp_windows::emet`
 
 Installs Enhanced Mitigation Experience Toolkit
 
@@ -254,34 +295,39 @@ include simp_windows::emet
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::emet` class.
+The following parameters are available in the `simp_windows::emet` class:
 
-##### `package_name`
+* [`package_name`](#package_name)
+* [`package_ensure`](#package_ensure)
+* [`package_source`](#package_source)
+* [`install_options`](#install_options)
+
+##### <a name="package_name"></a>`package_name`
 
 Data type: `String`
 
 Name of the package as shown in 'puppet resource package'
 
-##### `package_ensure`
+##### <a name="package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 Determines state of the package.  'installed' and 'absent' are valid.
 
-##### `package_source`
+##### <a name="package_source"></a>`package_source`
 
 Data type: `Stdlib::Filesource`
 
 Location of the installation binary.
 
-##### `install_options`
+##### <a name="install_options"></a>`install_options`
 
 Data type: `Array`
 
 Additional command line options for the installation binary. See the documentation
 for the installation binary for details.
 
-### `simp_windows::laps`
+### <a name="simp_windowslaps"></a>`simp_windows::laps`
 
 Installs the Microsoft Local Administrator Password Solution Group Policy Client Side Extension
 
@@ -295,34 +341,39 @@ include simp_windows::laps
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::laps` class.
+The following parameters are available in the `simp_windows::laps` class:
 
-##### `package_name`
+* [`package_name`](#package_name)
+* [`package_ensure`](#package_ensure)
+* [`package_source`](#package_source)
+* [`install_options`](#install_options)
+
+##### <a name="package_name"></a>`package_name`
 
 Data type: `String`
 
 Name of the package as shown in 'puppet resource package'
 
-##### `package_ensure`
+##### <a name="package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 Determines state of the package.  'installed' and 'absent' are valid.
 
-##### `package_source`
+##### <a name="package_source"></a>`package_source`
 
 Data type: `Stdlib::Filesource`
 
 Location of the installation binary.
 
-##### `install_options`
+##### <a name="install_options"></a>`install_options`
 
 Data type: `Array`
 
 Additional command line options for the installation binary. See the documentation
 for the installation binary for details.
 
-### `simp_windows::password_expiry`
+### <a name="simp_windowspassword_expiry"></a>`simp_windows::password_expiry`
 
 Tests the PasswordNeverExpires flag on all accounts
   and posts a NOTIFY if it is set to 'true' for
@@ -343,9 +394,11 @@ simp_windows::password_expiry {
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::password_expiry` class.
+The following parameters are available in the `simp_windows::password_expiry` class:
 
-##### `exclusions`
+* [`exclusions`](#exclusions)
+
+##### <a name="exclusions"></a>`exclusions`
 
 Data type: `Array`
 
@@ -353,15 +406,20 @@ Array of account names to exclude from testing.
 
 Default value: `[]`
 
-### `simp_windows::smart_card`
+### <a name="simp_windowssmart_card"></a>`simp_windows::smart_card`
 
 Configures the system to use smart cards
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::smart_card` class.
+The following parameters are available in the `simp_windows::smart_card` class:
 
-##### `ensure`
+* [`ensure`](#ensure)
+* [`enable`](#enable)
+* [`lock_on_removal`](#lock_on_removal)
+* [`require_smart_card`](#require_smart_card)
+
+##### <a name="ensure"></a>`ensure`
 
 Data type: `Enum['present','absent']`
 
@@ -370,7 +428,7 @@ Possible options are 'present' and 'absent'.  Defaults to 'present'.
 
 Default value: `'present'`
 
-##### `enable`
+##### <a name="enable"></a>`enable`
 
 Data type: `Boolean`
 
@@ -378,7 +436,7 @@ A boolean for the desired state of the 'SCPolicySvc' service.  Defaults to true.
 
 Default value: ``true``
 
-##### `lock_on_removal`
+##### <a name="lock_on_removal"></a>`lock_on_removal`
 
 Data type: `Boolean`
 
@@ -387,7 +445,7 @@ Defaults to true.
 
 Default value: ``true``
 
-##### `require_smart_card`
+##### <a name="require_smart_card"></a>`require_smart_card`
 
 Data type: `Boolean`
 
@@ -396,7 +454,7 @@ Defaults to false.
 
 Default value: ``false``
 
-### `simp_windows::unused_accounts`
+### <a name="simp_windowsunused_accounts"></a>`simp_windows::unused_accounts`
 
 Searches the local system, or Active Directory if a Domain Controller,
 for accounts that are enabled and have not been logged into for the
@@ -412,9 +470,12 @@ include simp_windows::unused_accounts
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::unused_accounts` class.
+The following parameters are available in the `simp_windows::unused_accounts` class:
 
-##### `exclusions`
+* [`exclusions`](#exclusions)
+* [`maxdays`](#maxdays)
+
+##### <a name="exclusions"></a>`exclusions`
 
 Data type: `Array`
 
@@ -422,7 +483,7 @@ Array containing account names to exclude from alerting.
 
 Default value: `[]`
 
-##### `maxdays`
+##### <a name="maxdays"></a>`maxdays`
 
 Data type: `Numeric`
 
@@ -434,7 +495,7 @@ Default value: `35`
 
 ## Defined types
 
-### `simp_windows::administrator_pw_date`
+### <a name="simp_windowsadministrator_pw_date"></a>`simp_windows::administrator_pw_date`
 
 Tests the password last set date of the krbtgt account in Active Directory
   and posts a NOTIFY if it is older than 180 days.
@@ -453,9 +514,12 @@ simp_windows::administrator_pw_date {
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::administrator_pw_date` defined type.
+The following parameters are available in the `simp_windows::administrator_pw_date` defined type:
 
-##### `testpwdate`
+* [`testpwdate`](#testpwdate)
+* [`maxagedays`](#maxagedays)
+
+##### <a name="testpwdate"></a>`testpwdate`
 
 Data type: `Boolean`
 
@@ -463,7 +527,7 @@ Enables the test, defaults to 'false'.
 
 Default value: ``false``
 
-##### `maxagedays`
+##### <a name="maxagedays"></a>`maxagedays`
 
 Data type: `Integer`
 
@@ -471,7 +535,7 @@ Maximum age in days for the 'password last set' date.
 
 Default value: `60`
 
-### `simp_windows::krbtgt_pw_date`
+### <a name="simp_windowskrbtgt_pw_date"></a>`simp_windows::krbtgt_pw_date`
 
 Tests the password last set date of the krbtgt account in Active Directory
   and posts a NOTIFY if it is older than 180 days.
@@ -490,9 +554,12 @@ simp_windows::krbtgt_pw_date {
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::krbtgt_pw_date` defined type.
+The following parameters are available in the `simp_windows::krbtgt_pw_date` defined type:
 
-##### `testpwdate`
+* [`testpwdate`](#testpwdate)
+* [`maxagedays`](#maxagedays)
+
+##### <a name="testpwdate"></a>`testpwdate`
 
 Data type: `Boolean`
 
@@ -500,7 +567,7 @@ Enables the test, defaults to 'false'.
 
 Default value: ``false``
 
-##### `maxagedays`
+##### <a name="maxagedays"></a>`maxagedays`
 
 Data type: `Integer`
 
@@ -508,7 +575,7 @@ Maximum age in days for the 'password last set' date.
 
 Default value: `180`
 
-### `simp_windows::processmitigation`
+### <a name="simp_windowsprocessmitigation"></a>`simp_windows::processmitigation`
 
 Enforces configuration for Windows Exploit protection
   settings for system and applications.
@@ -547,15 +614,18 @@ simp_windows::processmitigation {
 
 #### Parameters
 
-The following parameters are available in the `simp_windows::processmitigation` defined type.
+The following parameters are available in the `simp_windows::processmitigation` defined type:
 
-##### `mitigation`
+* [`mitigation`](#mitigation)
+* [`applies_to`](#applies_to)
+
+##### <a name="mitigation"></a>`mitigation`
 
 Data type: `Hash[String, Enum['NOT SET', 'ON', 'OFF']]`
 
 Mitigation setting.  Valid values are 'ON', 'OFF', 'NOT SET'.
 
-##### `applies_to`
+##### <a name="applies_to"></a>`applies_to`
 
 Data type: `Variant[Enum['System'], Pattern[/(?i:\.exe)$/]]`
 

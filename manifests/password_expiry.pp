@@ -17,7 +17,6 @@
 class simp_windows::password_expiry (
   Array $exclusions = [],
 ) {
-
   $non_expiring_accounts = $facts['non_expiring_accounts']
   unless $non_expiring_accounts == [] {
     if $exclusions == [] {
@@ -32,7 +31,7 @@ class simp_windows::password_expiry (
       }
     }
     unless $acct_list == [] {
-      notify{ "The following accounts have the 'Password never expires' flag set. ${acct_list}":}
+      notify { "The following accounts have the 'Password never expires' flag set. ${acct_list}": }
     }
   }
 }

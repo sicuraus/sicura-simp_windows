@@ -59,3 +59,4 @@ This module is supported on the following versions of Windows:
 * Windows 2012 R2
 * Windows Server 2016
 * Windows Server 2019
+* Windows Server 2022

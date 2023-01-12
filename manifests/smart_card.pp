@@ -18,7 +18,6 @@ class simp_windows::smart_card (
   Boolean                  $lock_on_removal    = true,
   Boolean                  $require_smart_card = false
 ) {
-
   if $lock_on_removal {
     $_removal_value = '"1"'
   }

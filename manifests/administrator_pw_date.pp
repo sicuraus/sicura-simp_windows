@@ -27,7 +27,7 @@ define simp_windows::administrator_pw_date (
       # compare passwordlastset date with calculated date
       # notify if older
       if $pwlastsetdate < $oldestpwdate {
-        notify{ "FAILURE: The Administrator account password is more than ${maxagedays} days old, please change it as soon as possible.":}
+        notify { "FAILURE: The Administrator account password is more than ${maxagedays} days old, please change it as soon as possible.": }
       }
     }
   }
