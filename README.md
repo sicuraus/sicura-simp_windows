@@ -2,17 +2,19 @@
 
 #### Table of Contents
 
-1. [Description](#description)
-1. [Setup - The basics of getting started with simp_windows](#setup)
-    * [What simp_windows affects](#what-simp_windows-affects)
-    * [Setup requirements](#setup-requirements)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-1. [Limitations - OS compatibility, etc.](#limitations)
+- [simp\_windows](#simp_windows)
+      - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Setup](#setup)
+    - [What simp\_windows affects](#what-simp_windows-affects)
+    - [Setup Requirements](#setup-requirements)
+  - [Usage](#usage)
+  - [Reference](#reference)
+  - [Limitations](#limitations)
 
 ## Description
 
-Provides functionality to apply SIMP compliance policies to Windows systems.
+Provides functionality to apply Sicura compliance policies to Windows systems.
 
 ## Setup
 
@@ -52,11 +54,12 @@ include '::simp_windows'
 ## Reference
 
 See [REFERENCE.md](./REFERENCE.)
+
 ## Limitations
 
 This module is supported on the following versions of Windows:
-* Windows 2012
-* Windows 2012 R2
 * Windows Server 2016
 * Windows Server 2019
-* Windows Server 2022
+* Windows Server 2022 
+* Windows 10
+* Windows 11

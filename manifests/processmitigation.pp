@@ -94,7 +94,14 @@ define simp_windows::processmitigation (
       fail ("${key} is not currently supported.")
     }
 
-    $factsarray = $facts['simp_windows__facts']['process_mitigation'].filter |$element| { $element['ProcessName'] == $applies_to }
+    unless $facts['simp_windows__facts']['process_mitigation'] == undef {
+      $factsarray = $facts['simp_windows__facts']['process_mitigation'].filter |$element| {
+        $element['ProcessName'] == $applies_to
+      }
+    } else {
+      $factsarray = []
+    }
+
     if $factsarray.length > 0 {
       $hash = $factsarray[0]
     } else {

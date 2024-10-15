@@ -1,16 +1,16 @@
 {
   "name": "simp-simp_windows",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "author": "Sicura",
   "summary": "Apply SIMP compliance policies to Windows systems",
   "license": "proprietary",
   "source": "N/A",
-  "project_page": "https://sicura.us",
-  "issues_url": "https://sicura.us",
+  "project_page": "https://sicura.us/",
+  "issues_url": "https://sicura.freshdesk.com/",
   "dependencies": [
     {
       "name": "puppetlabs-acl",
-      "version_requirement": ">= 4.1.0 < 5.0.0"
+      "version_requirement": ">= 4.1.0 < 6.0.0"
     },
     {
       "name": "fervid-auditpol",
@@ -26,11 +26,11 @@
     },
     {
       "name": "puppetlabs-powershell",
-      "version_requirement": ">= 5.1.0 < 6.0.0"
+      "version_requirement": ">= 5.1.0 < 7.0.0"
     },
     {
       "name": "puppetlabs-registry",
-      "version_requirement": ">= 4.1.0 < 5.0.0"
+      "version_requirement": ">= 4.1.0 < 6.0.0"
     },
     {
       "name": "ipcrm-registry_acl",
@@ -42,37 +42,40 @@
     },
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 8.2.0 < 9.0.0"
+      "version_requirement": ">= 8.2.0 < 10.0.0"
     },
     {
       "name": "puppet-windowsfeature",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
+      "version_requirement": ">= 4.0.0 < 6.0.0"
     },
     {
       "name": "puppet-windows_firewall",
-      "version_requirement": ">= 4.1.0 < 5.0.0"
+      "version_requirement": ">= 4.1.0 < 6.0.0"
+    },
+    {
+      "name": "puppetlabs-dism",
+      "version_requirement": ">= 1.3.1 < 2.0.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "windows",
       "operatingsystemrelease": [
-        "2012",
-        "2012 R2",
         "2016",
         "2019",
         "2022",
-        "10"
+        "10",
+        "11"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0 < 8.0.0"
+      "version_requirement": ">= 7.0.0 < 9.0.0"
     }
   ],
-  "pdk-version": "2.5.0",
-  "template-url": "pdk-default#2.5.0",
-  "template-ref": "tags/2.5.0-0-g369d483"
+  "pdk-version": "3.2.0",
+  "template-url": "pdk-default#3.2.0",
+  "template-ref": "tags/3.2.0-0-gb257ef1"
 }

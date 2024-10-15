@@ -16,6 +16,14 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  simp_windows::dism_features:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  simp_windows::execs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   simp_windows::acls:
     merge:
       strategy: deep
@@ -65,6 +73,8 @@ simp_windows::registry_values: {}
 simp_windows::local_security_policies: {}
 simp_windows::audit_policies: {}
 simp_windows::features: {}
+simp_windows::dism_features: {}
+simp_windows::execs: {}
 simp_windows::services: {}
 simp_windows::enable_smart_card: false
 simp_windows::banner: false

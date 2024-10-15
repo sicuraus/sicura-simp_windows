@@ -8,6 +8,10 @@
 #   Windows Audit Policy settings
 # @param features
 #   Windows Features settings
+# @param dism_features
+#   Windows Features settings via dism
+# @param execs
+#   Execs to run on the machine
 # @param acls
 #   ACL settings
 # @param services
@@ -95,6 +99,8 @@ class simp_windows (
   Hash                    $local_security_policies,
   Hash                    $audit_policies,
   Hash                    $features,
+  Hash                    $dism_features,
+  Hash                    $execs,
   Hash                    $acls,
   Hash                    $services,
   Hash                    $reg_acls,
@@ -274,6 +280,20 @@ class simp_windows (
   $features.each |String $feature_name, Hash $feature_data| {
     windowsfeature { $feature_name:
       * => $feature_data,
+    }
+  }
+
+  # Windows Features controlled via DISM
+  $dism_features.each |String $feature_name, Hash $feature_data| {
+    dism { $feature_name:
+      * => $feature_data,
+    }
+  }
+
+  # Windows Execs to run
+  $execs.each |String $exec_name, Hash $exec_data| {
+    exec { $exec_name:
+      * => $exec_data,
     }
   }
 
