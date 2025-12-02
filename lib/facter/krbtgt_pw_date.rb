@@ -10,7 +10,7 @@
 #
 require 'json'
 Facter.add('krbtgt_pw_date') do
-  confine osfamily: :windows
+  confine 'os.family' => 'windows'
 
   setcode do
     if dig(Facter.value(:simp_windows__facts), 'active_directory', 'systemrole') == 'domaincontroller'

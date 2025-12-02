@@ -1,4 +1,0 @@
----
-ignore:
-- "/spec/acceptance/suites/ad_server/files/modules/domain_controller/"
-- "/spec/acceptance/suites/ad_server/files/modules/domain_member/"

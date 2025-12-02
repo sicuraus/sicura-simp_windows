@@ -3,7 +3,7 @@
 require 'json'
 
 Facter.add('service_list') do
-  confine osfamily: :windows
+  confine 'os.family' => 'windows'
   setcode do
     command = 'powershell "Get-Service | Select-Object name | ConvertTo-Json"'
     value = Facter::Core::Execution.execute(command)

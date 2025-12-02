@@ -3,7 +3,7 @@
 require 'json'
 
 Facter.add('unused_accounts') do
-  confine operatingsystem: :windows
+  confine 'os.family' => 'windows'
   setcode do
     fact_value ||= {}
 

@@ -10,7 +10,7 @@
 #
 
 Facter.add('simp_windows__facts') do
-  confine osfamily: :windows
+  confine 'os.family' => 'windows'
 
   # Obtain the Win32_ComputerSystem information as a hash
   #
@@ -64,9 +64,9 @@ Facter.add('simp_windows__facts') do
       domain_info = {
         'winsystype' => nil,
         'systemrole' => nil,
-        'joined' => false,
-        'domain' => false,
-        'domain_id' => nil,
+        'joined'     => false,
+        'domain'     => false,
+        'domain_id'  => nil,
       }
 
       case sys_info['DomainRole']

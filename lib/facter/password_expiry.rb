@@ -3,7 +3,7 @@
 require 'json'
 
 Facter.add('non_expiring_accounts') do
-  confine 'osfamily' => 'windows'
+  confine 'os.family' => 'windows'
 
   setcode do
     systemrole = Facter.value(:simp_windows__facts)['active_directory']['systemrole']

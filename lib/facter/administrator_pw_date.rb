@@ -11,7 +11,7 @@
 require 'json'
 
 Facter.add('admin_pw_date') do
-  confine 'osfamily' => 'windows'
+  confine 'os.family' => 'windows'
 
   setcode do
     fact_value ||= {}
