@@ -6,7 +6,7 @@
 
 ### Classes
 
-* [`simp_windows`](#simp_windows): Apply SIMP compliance policies to Windows systems
+* [`simp_windows`](#simp_windows): Apply Sicura compliance policies to Windows systems
 * [`simp_windows::emet`](#simp_windows--emet): Installs Enhanced Mitigation Experience Toolkit
 * [`simp_windows::laps`](#simp_windows--laps): Installs LAPS GPO CSE
 * [`simp_windows::password_expiry`](#simp_windows--password_expiry): Tests all enabled accounts, local and domain, for PasswordNeverExpires=>true
@@ -23,7 +23,7 @@
 
 ### <a name="simp_windows"></a>`simp_windows`
 
-Apply SIMP compliance policies to Windows systems
+Apply Sicura compliance policies to Windows systems
 
 #### Parameters
 

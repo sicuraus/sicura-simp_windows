@@ -48,7 +48,7 @@ This module requires the following:
 ## Usage
 
 ```puppet
-include '::simp_windows'
+include 'simp_windows'
 ```
 
 ## Reference
@@ -60,6 +60,6 @@ See [REFERENCE.md](./REFERENCE.)
 This module is supported on the following versions of Windows:
 * Windows Server 2016
 * Windows Server 2019
-* Windows Server 2022 
-* Windows 10
+* Windows Server 2022
+* Windows Server 2025
 * Windows 11

@@ -1,4 +1,4 @@
-# @summary Apply SIMP compliance policies to Windows systems
+# @summary Apply Sicura compliance policies to Windows systems
 #
 # @param registry_values
 #   Windows registry keys and values
