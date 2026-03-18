@@ -70,11 +70,15 @@ Data type: `Hash`
 
 Windows registry keys and values
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--local_security_policies"></a>`local_security_policies`
 
 Data type: `Hash`
 
 Windows Local Security Policy settings
+
+Default value: `{}`
 
 ##### <a name="-simp_windows--audit_policies"></a>`audit_policies`
 
@@ -82,11 +86,15 @@ Data type: `Hash`
 
 Windows Audit Policy settings
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--features"></a>`features`
 
 Data type: `Hash`
 
 Windows Features settings
+
+Default value: `{}`
 
 ##### <a name="-simp_windows--dism_features"></a>`dism_features`
 
@@ -94,11 +102,15 @@ Data type: `Hash`
 
 Windows Features settings via dism
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--execs"></a>`execs`
 
 Data type: `Hash`
 
 Execs to run on the machine
+
+Default value: `{}`
 
 ##### <a name="-simp_windows--acls"></a>`acls`
 
@@ -106,17 +118,23 @@ Data type: `Hash`
 
 ACL settings
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--services"></a>`services`
 
 Data type: `Hash`
 
 Services
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--reg_acls"></a>`reg_acls`
 
 Data type: `Hash`
 
 Registry ACL settings
+
+Default value: `{}`
 
 ##### <a name="-simp_windows--modify_reg_acl_security"></a>`modify_reg_acl_security`
 
@@ -127,11 +145,15 @@ Due to Windows' tight control over the security key, this has been kept
 seperate from the rest of the registry ACLs. Setting this paramater will
 cause an error unless the module is run with SYSTEM level permissions.
 
+Default value: `false`
+
 ##### <a name="-simp_windows--rename_admin_account"></a>`rename_admin_account`
 
 Data type: `Boolean`
 
 If set, rename the local `Administrator` account
+
+Default value: `false`
 
 ##### <a name="-simp_windows--administrator_username"></a>`administrator_username`
 
@@ -139,17 +161,23 @@ Data type: `Optional[String[1,104]]`
 
 Username for the local `Administrator` user
 
+Default value: `'simp_admin'`
+
 ##### <a name="-simp_windows--rename_guest_account"></a>`rename_guest_account`
 
 Data type: `Boolean`
 
 If set, rename the local `Guest` account
 
+Default value: `false`
+
 ##### <a name="-simp_windows--guest_username"></a>`guest_username`
 
 Data type: `Optional[String[1,104]]`
 
 Username for the local `Guest` user
+
+Default value: `'simp_guest'`
 
 ##### <a name="-simp_windows--enable_smart_card"></a>`enable_smart_card`
 
@@ -158,11 +186,15 @@ Data type: `Boolean`
 Turn on Windows Smart Card Services
 See also: 'simp_windows::smart_card'
 
+Default value: `false`
+
 ##### <a name="-simp_windows--banner"></a>`banner`
 
 Data type: `Boolean`
 
 Enable management of the login banner
+
+Default value: `false`
 
 ##### <a name="-simp_windows--banner_name"></a>`banner_name`
 
@@ -170,11 +202,15 @@ Data type: `String`
 
 Banner to use. By default, the options are `default`, `us_dod`, or `custom`.
 
+Default value: `'default'`
+
 ##### <a name="-simp_windows--banner_custom_title"></a>`banner_custom_title`
 
 Data type: `String`
 
 If `banner_name` is `custom`, use this title for the banner
+
+Default value: `'Warning'`
 
 ##### <a name="-simp_windows--banner_custom_text"></a>`banner_custom_text`
 
@@ -183,11 +219,29 @@ Data type: `String`
 If banner_type == 'custom'
 If `banner_name` is `custom`, use this text for the banner
 
+Default value: `undef`
+
 ##### <a name="-simp_windows--banners"></a>`banners`
 
 Data type: `Hash`
 
 A hash containing possible banners
+
+Default value:
+
+```puppet
+{ 'default' => { 'title' => 'Warning', 'data' => 'This computer system, and all related equipment, networks, and network devices are provided for authorised use only.  All systems controlled by this organisation will be monitored for all lawful purposes.  Monitoring includes the totality of the operating system and connected networks.  No events on this system are excluded from record and there are no exclusions from this policy.
+Use of this system constitutes consent to full monitoring of your activities for use by the authorised monitoring organisation. Unauthorised use of this system, including uninvited connections, may subject you to criminal prosecution.
+The data collected from this system may be used for any purpose by the collecting organisation.  If you do not agree to this monitoring, discontinue use of the system IMMEDIATELY.
+' }, 'us_dod' => { 'title' => 'DoD Notice and Consent Banner', 'data' => 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+-At any time, the USG may inspect and seize data stored on this IS.
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
+' } }
+```
 
 ##### <a name="-simp_windows--manage_windows_firewall"></a>`manage_windows_firewall`
 
@@ -195,12 +249,16 @@ Data type: `Boolean`
 
 Enable management of the Windows Firewall.  Firewall settings will only be changed if this is set to 'true'.
 
+Default value: `false`
+
 ##### <a name="-simp_windows--windows_firewall"></a>`windows_firewall`
 
 Data type: `Hash`
 
 Hash of firewall settings to enforce.  See documentation in the puppet/windows_firewall module for details.
 Link: https://forge.puppet.com/modules/puppet/windows_firewall
+
+Default value: `{}`
 
 ##### <a name="-simp_windows--windows_firewall_exceptions"></a>`windows_firewall_exceptions`
 
@@ -219,11 +277,15 @@ Example rule:
      display_name => 'Windows Remote Management HTTP-In',
      description  => 'Inbound rule for Windows Remote Management via WS-Management. [TCP 5985]',
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--install_emet"></a>`install_emet`
 
 Data type: `Boolean`
 
 Deploys Microsoft Enhanced Mitigation Experience Toolkit v5.52 to clients
+
+Default value: `false`
 
 ##### <a name="-simp_windows--install_laps"></a>`install_laps`
 
@@ -236,12 +298,16 @@ NOTE: The Active Directory Schema must be extended and permissions configured
   on clients until those prerequisites are completed and Group Policy configured to enable the
   solution.
 
+Default value: `false`
+
 ##### <a name="-simp_windows--processmitigation"></a>`processmitigation`
 
 Data type: `Hash`
 
 A hash containing process mitigation settings.
 See simp_windows::processmitigation for details.
+
+Default value: `{}`
 
 ##### <a name="-simp_windows--krbtgt_pw_date"></a>`krbtgt_pw_date`
 
@@ -250,6 +316,8 @@ Data type: `Hash`
 A hash containing settings for krbtgt account password age
 See simp_windows::krbtgt_pw_date for details.
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--administrator_pw_date"></a>`administrator_pw_date`
 
 Data type: `Hash`
@@ -257,11 +325,15 @@ Data type: `Hash`
 A hash containing settings for built-in Administrator account password age
 See simp_windows::administrator_pw_date for details.
 
+Default value: `{}`
+
 ##### <a name="-simp_windows--password_expiry"></a>`password_expiry`
 
 Data type: `Boolean`
 
 A boolean to enable checking for accounts with 'Password never expires' enabled
+
+Default value: `false`
 
 ##### <a name="-simp_windows--password_expiry_exclusions"></a>`password_expiry_exclusions`
 
@@ -269,11 +341,15 @@ Data type: `Array`
 
 An array containing account names allowed to have 'Password never expires' enabled
 
+Default value: `[]`
+
 ##### <a name="-simp_windows--unused_accounts"></a>`unused_accounts`
 
 Data type: `Boolean`
 
 Detect and notify on unused accounts
+
+Default value: `false`
 
 ##### <a name="-simp_windows--unused_accounts_maxdays"></a>`unused_accounts_maxdays`
 
@@ -281,11 +357,15 @@ Data type: `Numeric`
 
 Number of days after which an account is considered 'unused'
 
+Default value: `35`
+
 ##### <a name="-simp_windows--unused_accounts_exclusions"></a>`unused_accounts_exclusions`
 
 Data type: `Array`
 
 Array containing account names to exclude from alerting
+
+Default value: `[]`
 
 ##### <a name="-simp_windows--classes"></a>`classes`
 
@@ -322,11 +402,15 @@ Data type: `String`
 
 Name of the package as shown in 'puppet resource package'
 
+Default value: `'EMET 5.52'`
+
 ##### <a name="-simp_windows--emet--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 Determines state of the package.  'installed' and 'absent' are valid.
+
+Default value: `'installed'`
 
 ##### <a name="-simp_windows--emet--package_source"></a>`package_source`
 
@@ -334,12 +418,16 @@ Data type: `Stdlib::Filesource`
 
 Location of the installation binary.
 
+Default value: `'https://download.microsoft.com/download/F/3/6/F366901C-F3CB-4A94-B377-5611740B8B19/EMET%20Setup.msi'`
+
 ##### <a name="-simp_windows--emet--install_options"></a>`install_options`
 
 Data type: `Array`
 
 Additional command line options for the installation binary. See the documentation
 for the installation binary for details.
+
+Default value: `['/qn', '/norestart']`
 
 ### <a name="simp_windows--laps"></a>`simp_windows::laps`
 
@@ -368,11 +456,15 @@ Data type: `String`
 
 Name of the package as shown in 'puppet resource package'
 
+Default value: `'Local Administrator Password Solution'`
+
 ##### <a name="-simp_windows--laps--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 Determines state of the package.  'installed' and 'absent' are valid.
+
+Default value: `'installed'`
 
 ##### <a name="-simp_windows--laps--package_source"></a>`package_source`
 
@@ -380,12 +472,16 @@ Data type: `Stdlib::Filesource`
 
 Location of the installation binary.
 
+Default value: `'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'`
+
 ##### <a name="-simp_windows--laps--install_options"></a>`install_options`
 
 Data type: `Array`
 
 Additional command line options for the installation binary. See the documentation
 for the installation binary for details.
+
+Default value: `['/quiet']`
 
 ### <a name="simp_windows--password_expiry"></a>`simp_windows::password_expiry`
 
