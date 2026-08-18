@@ -135,7 +135,7 @@ define simp_windows::processmitigation (
     }
 
     if $mitigations_to_enable_string.length > 0 {
-      exec { "${applies_to}-mitigation":
+      exec { "${applies_to}-mitigation": # lint:ignore:exec_idempotency
         command  => "set-processmitigation ${setscope} -enable ${mitigations_to_enable_string}",
         provider => powershell,
       }

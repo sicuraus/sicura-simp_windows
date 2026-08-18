@@ -292,7 +292,7 @@ class simp_windows (
 
   # Windows Execs to run
   $execs.each |String $exec_name, Hash $exec_data| {
-    exec { $exec_name:
+    exec { $exec_name: # lint:ignore:exec_idempotency
       * => $exec_data,
     }
   }
