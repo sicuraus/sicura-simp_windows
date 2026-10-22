@@ -381,7 +381,7 @@ Installs Enhanced Mitigation Experience Toolkit
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 include simp_windows::emet
@@ -435,7 +435,7 @@ Installs the Microsoft Local Administrator Password Solution Group Policy Client
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 include simp_windows::laps
@@ -491,7 +491,7 @@ Tests the PasswordNeverExpires flag on all accounts
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 simp_windows::password_expiry_exclusions => ['serviceaccount1', 'serviceaccount2']
@@ -572,7 +572,7 @@ defined number of days.  Notify thrown if any are found.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 include simp_windows::unused_accounts
@@ -612,7 +612,7 @@ Tests the password last set date of the krbtgt account in Active Directory
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 simp_windows::administrator_pw_date {
@@ -652,7 +652,7 @@ Tests the password last set date of the krbtgt account in Active Directory
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 simp_windows::krbtgt_pw_date {
@@ -692,7 +692,7 @@ Enforces configuration for Windows Exploit protection
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 simp_windows::processmitigation {
@@ -703,7 +703,7 @@ simp_windows::processmitigation {
 }
 ```
 
-##### 
+#####
 
 ```puppet
 simp_windows::processmitigation {
@@ -743,4 +743,3 @@ Executable name that the mitigation setting applies to.  Use 'System'
 to set as global to the system.
 
 Default value: `$name`
-
