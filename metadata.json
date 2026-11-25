@@ -1,6 +1,6 @@
 {
   "name": "sicura-simp_windows",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "author": "Sicura, Inc.",
   "summary": "Apply Sicura compliance policies to Windows systems",
   "license": "AGPL-3.0-or-later",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs-acl",
-      "version_requirement": ">= 4.1.0 < 6.0.0"
+      "version_requirement": ">= 4.1.0 < 7.0.0"
     },
     {
       "name": "fervid-auditpol",
@@ -18,7 +18,7 @@
     },
     {
       "name": "ayohrling-local_security_policy",
-      "version_requirement": ">= 1.1.0 < 2.0.0"
+      "version_requirement": ">= 1.1.0 < 3.0.0"
     },
     {
       "name": "puppetlabs-powershell",
@@ -26,7 +26,7 @@
     },
     {
       "name": "puppetlabs-registry",
-      "version_requirement": ">= 4.1.0 < 6.0.0"
+      "version_requirement": ">= 4.1.0 < 7.0.0"
     },
     {
       "name": "ipcrm-registry_acl",
@@ -66,10 +66,6 @@
     }
   ],
   "requirements": [
-    {
-      "name": "puppet",
-      "version_requirement": ">= 8.0.0 < 10.0.0"
-    },
     {
       "name": "openvox",
       "version_requirement": ">= 8.0.0 < 10.0.0"
